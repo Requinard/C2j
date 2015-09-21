@@ -21,7 +21,6 @@ public class Persoon implements Serializable {
     private final List<Gezin> alsOuderBetrokkenIn;
     private final Geslacht geslacht;
 
-    private List<PersoonMetGeneratie> pmg;
 
     // ********constructoren***********************************
     /**
