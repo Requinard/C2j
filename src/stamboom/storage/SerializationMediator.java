@@ -85,9 +85,9 @@ public class SerializationMediator implements IStorageMediator {
 
     /**
      * Controleert of er een geldig Key/Value paar bestaat in de Properties.
-     * De bedoeling is dat er een Key "file" is, en de Value van die Key 
+     * De bedoeling is dat er een Key "file" is, en de Value van die Key
      * een String representatie van een FilePath is (eg. C:\\Users\Username\test.txt).
-     * 
+     *
      * @return true if config() contains at least a key "file" and the
      * corresponding value is formatted like a file path
      */
@@ -96,7 +96,7 @@ public class SerializationMediator implements IStorageMediator {
         if (props == null) {
             return false;
         }
-        return props.containsKey("file") 
+        return props.containsKey("file")
                 && props.getProperty("file").contains(File.separator);
     }
 }

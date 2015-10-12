@@ -4,6 +4,8 @@
  */
 package stamboom.gui;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.DataFormat;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import stamboom.controller.StamboomController;
 import stamboom.domain.Geslacht;
@@ -185,15 +188,16 @@ public class StamboomFXController extends StamboomController implements Initiali
 
     public void selectGezin(Event evt) {
         // todo opgave 3
-        showGezin((Gezin)cbGezin.getSelectionModel().getSelectedItem());
+        showGezin((Gezin) cbGezin.getSelectionModel().getSelectedItem());
 
     }
 
     private void showGezin(Gezin gezin) {
         // todo opgave 3
-        if (gezin == null) {
-            clearTabGezin();
-        } else {
+        clearTabGezin();
+
+        if (gezin != null)
+        {
             tfGezinNr.setText("" + gezin.getNr());
             tfGezinOuder1.setText(gezin.getOuder1().getNaam());
             tfGezinOuder2.setText(gezin.getOuder2().getNaam());
@@ -316,14 +320,44 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     public void openStamboom(Event evt) {
         // todo opgave 3
-       
+        if (!withDatabase) {
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Haal Stamboom op");
+            File f = fileChooser.showOpenDialog(new Stage());
+
+            try {
+                this.deserialize(f);
+                this.personen = getAdministratie().getPersonen();
+                this.initComboboxes();
+
+            } catch (IOException exc) {
+                showDialog("Gelukt", exc.getLocalizedMessage());
+            }
+        }
+
+
     }
 
     
     public void saveStamboom(Event evt) {
         // todo opgave 3
-       
+        if (!withDatabase) {
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Sla Stamboom op");
+            File f = fileChooser.showSaveDialog(new Stage());
+            try {
+
+                this.serialize(f);
+
+            } catch (Exception exc) {
+                exc.fillInStackTrace();
+            }
+        }
     }
+
+
 
     
     public void closeApplication(Event evt) {
@@ -407,6 +441,8 @@ public class StamboomFXController extends StamboomController implements Initiali
         tfGezinOuder1.clear();
         tfGezinOuder2.clear();
         cbGezin.getSelectionModel().clearSelection();
+        taGezinKinderen.clear();
+
 
        
     }

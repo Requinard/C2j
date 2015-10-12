@@ -13,8 +13,8 @@ public class Administratie implements Serializable {
     private int nextPersNr;
     private final List<Persoon> personen;
     private final List<Gezin> gezinnen;
-    private ObservableList<Persoon> observablePersonen;
-    private ObservableList<Gezin> observableGezinnen;
+    private transient ObservableList<Persoon> observablePersonen;
+    private transient ObservableList<Gezin> observableGezinnen;
 
     //***********************constructoren***********************************
     /**
@@ -81,7 +81,7 @@ public class Administratie implements Serializable {
         Persoon persoon = new Persoon(nextPersNr, vnamen, anaam, tvoegsel, gebdat, gebplaats, geslacht, ouderlijkGezin);
         nextPersNr++;
 
-        for (Persoon p : this.personen) {
+        for (Persoon p : this.observablePersonen) {
             if (p.getNaam().equals(persoon.getNaam())
                     && p.getGebDat().get(Calendar.DATE) == persoon.getGebDat().get(Calendar.DATE)
                     && p.getGebDat().get(Calendar.MONTH) == persoon.getGebDat().get(Calendar.MONTH)
@@ -94,7 +94,7 @@ public class Administratie implements Serializable {
         if (persoon != null) {
             if (ouderlijkGezin != null)
                 ouderlijkGezin.breidUitMet(persoon);
-            personen.add(persoon);
+            observablePersonen.add(persoon);
             return  persoon;
         }
 
@@ -239,7 +239,7 @@ public class Administratie implements Serializable {
             }
         }
 
-        for (Persoon p : this.personen) {
+        for (Persoon p : this.observablePersonen) {
             if (p.equals(ouder1)) {
                 gezin = ouder1.heeftOngehuwdGezinMet(ouder2);
                 if (gezin != null) {
@@ -287,7 +287,7 @@ public class Administratie implements Serializable {
      */
     public Persoon getPersoon(int nr) {
         //todo opgave 1
-        for (Persoon p : personen){
+        for (Persoon p : observablePersonen){
             if (p.getNr() == nr)
                 return p;
         }
@@ -303,7 +303,7 @@ public class Administratie implements Serializable {
         //todo opgave 1
         List<Persoon> p = new ArrayList<>();
 
-        for (Persoon persoon : this.personen) {
+        for (Persoon persoon : this.observablePersonen) {
             if (persoon.getAchternaam().toLowerCase().equals(achternaam.toLowerCase()))
                 p.add(persoon);
         }
@@ -335,7 +335,7 @@ public class Administratie implements Serializable {
             Calendar gebdat, String gebplaats) {
         //todo opgaven
 
-        for (Persoon persoon : personen) {
+        for (Persoon persoon : this.observablePersonen) {
             String initialen = "";
             // Aanmaken van initialen voor de te zoeken persoon
             for (String s : vnamen) {
