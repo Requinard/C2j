@@ -119,7 +119,7 @@
                                                             <children>
                                                                 <TextField fx:id="tfScheidingInvoer" onAction="#setScheidingsdatum" prefHeight="-1.0" promptText="dd-mm-jjjj" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                                 <Label alignment="CENTER_RIGHT" prefHeight="-1.0" prefWidth="-1.0" text="Scheiding op" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x3" GridPane.rowIndex="3" />
-                                                                <TextField fx:id="tfHuwelijkInvoer" prefHeight="-1.0" promptText="dd-mm-jjjj" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                <TextField fx:id="tfHuwelijkInvoer" prefHeight="-1.0" onAction="#setHuwdatum" promptText="dd-mm-jjjj" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                 <ComboBox fx:id="cbOuder2Invoer" prefHeight="-1.0" prefWidth="400.0" promptText="kies (zo mogelijk) 2e ouder" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                     <items>
                                                                         <FXCollections fx:factory="observableArrayList">
@@ -177,6 +177,113 @@
                                 </AnchorPane>
                             </content>
                         </Tab>
+                  <Tab fx:id="tabPersoonInvoer" closable="false" onSelectionChanged="#selectTab" text="Nieuwe Persoon">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <SplitPane layoutX="217.0" layoutY="9.0" prefHeight="268.0" prefWidth="469.0">
+                                 <items>
+                                    <GridPane>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Voornamen" />
+                                          <Label text="Tussenvoegsel" GridPane.rowIndex="1" />
+                                          <Label text="Achternaam" GridPane.rowIndex="2" />
+                                          <Label text="Geslacht" GridPane.rowIndex="3" />
+                                          <Label text="Geboortedatum" GridPane.rowIndex="4" />
+                                          <Label text="Geboorteplaats" GridPane.rowIndex="5" />
+                                          <Label text="Ouderlijk Gezin" GridPane.rowIndex="6" />
+                                          <TextField fx:id="tfNieuwPersoonVoornamen" GridPane.columnIndex="1" />
+                                          <TextField fx:id="tfNieuwPersoonTussenVoegsel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="tfNieuwPersoonAchternaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="tfNieuwPersoonGeboortePlaats" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <DatePicker fx:id="dpNieuwPersonGeboorteDatum" prefHeight="25.0" prefWidth="231.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <ComboBox fx:id="cbNieuwPersoonGeslacht" prefHeight="25.0" prefWidth="234.0" promptText="Kies een geslacht" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <ComboBox fx:id="cbNieuwPersoonOuderlijkGezinNieuw" prefHeight="25.0" prefWidth="231.0" promptText="Kies een ouderlijk gezin" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                       </children>
+                                    </GridPane>
+                                 </items>
+                              </SplitPane>
+                              <Button layoutX="150.0" layoutY="247.0" onAction="#okPersoonInvoer" mnemonicParsing="false" text="OK" />
+                              <Button layoutX="85.0" onAction="#cancelPersoonInvoer" layoutY="247.0" mnemonicParsing="false" text="Cancel" />
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+
+                  <Tab fx:id="tabGezin" closable="false" onSelectionChanged="#selectTab" text="Gezin">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <SplitPane dividerPositions="0.3800841514726508" layoutX="6.0" layoutY="6.0">
+                                 <items>
+                                    <BorderPane prefHeight="270.0" prefWidth="294.0">
+                                       <top>
+                                          <GridPane BorderPane.alignment="CENTER">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="49.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="219.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label text="Gezin" />
+                                                <ComboBox fx:id="cbGezin" onAction="#selectGezin" prefHeight="25.0" prefWidth="213.0" promptText="Kies een gezin" GridPane.columnIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                       </top>
+                                    </BorderPane>
+                                    <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="270.0" prefWidth="413.0">
+                                       <top>
+                                          <GridPane prefHeight="262.0" prefWidth="439.0" BorderPane.alignment="CENTER">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="111.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="328.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label text="Nr" />
+                                                <Label text="Ouder 1" GridPane.rowIndex="1" />
+                                                <Label text="Ouder 2" GridPane.rowIndex="2" />
+                                                <Label text="Huwelijk" GridPane.rowIndex="3" />
+                                                <Label text="Scheiding" GridPane.rowIndex="4" />
+                                                <Label text="Kinderen" GridPane.rowIndex="5" />
+                                                <TextField fx:id="tfGezinNr" GridPane.columnIndex="1" />
+                                                <TextField fx:id="tfGezinOuder1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="tfGezinOuder2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="tfGezinHuwelijk" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="tfGezinScheiding" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <TextArea fx:id="taGezinKinderen" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                             </children>
+                                          </GridPane>
+                                       </top>
+                                    </BorderPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+
                     </tabs>
                 </TabPane>
             </center>

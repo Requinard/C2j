@@ -1,11 +1,15 @@
 package stamboom.domain;
 
 import java.io.Serializable;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import stamboom.util.StringUtilities;
 
 public class Persoon implements Serializable {
@@ -20,6 +24,8 @@ public class Persoon implements Serializable {
     private Gezin ouderlijkGezin;
     private final List<Gezin> alsOuderBetrokkenIn;
     private final Geslacht geslacht;
+
+    private ObservableList<Gezin> observableAlsOuderBetrokkenIn;
 
 
     // ********constructoren***********************************
@@ -45,11 +51,10 @@ public class Persoon implements Serializable {
         this.ouderlijkGezin = ouderlijkGezin;
         this.geslacht = g;
         this.alsOuderBetrokkenIn = new ArrayList<>();
-        this.pmg = new ArrayList<>();
-
-
+        this.observableAlsOuderBetrokkenIn = FXCollections.observableList(alsOuderBetrokkenIn);
 
     }
+
 
     // ********methoden****************************************
     /**
@@ -170,8 +175,9 @@ public class Persoon implements Serializable {
     /**
      * @return de gezinnen waar deze persoon bij betrokken is
      */
-    public List<Gezin> getAlsOuderBetrokkenIn() {
-        return (List<Gezin>) Collections.unmodifiableList(alsOuderBetrokkenIn);
+    public ObservableList<Gezin> getAlsOuderBetrokkenIn() {
+        return (ObservableList<Gezin>)
+                FXCollections.unmodifiableObservableList(observableAlsOuderBetrokkenIn);
     }
 
     /**

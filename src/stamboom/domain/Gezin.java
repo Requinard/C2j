@@ -15,6 +15,8 @@ public class Gezin implements Serializable {
     private final Persoon ouder1;
     private final Persoon ouder2;
     private final List<Persoon> kinderen;
+
+    private ObservableList<Persoon> observableKinderen;
     /**
      * kan onbekend zijn (dan is het een ongehuwd gezin):
      */
@@ -68,15 +70,18 @@ public class Gezin implements Serializable {
         this.kinderen = new ArrayList<>();
         this.huwelijksdatum = null;
         this.scheidingsdatum = null;
+        this.observableKinderen = FXCollections.observableList(kinderen);
     }
 
     // ********methoden*****************************************
     /**
      * @return alle kinderen uit dit gezin
      */
-    public List<Persoon> getKinderen() {
-        return kinderen;
+    public ObservableList<Persoon> getKinderen() {
+        return (ObservableList<Persoon>)
+                FXCollections.unmodifiableObservableList(observableKinderen);
     }
+
 
     /**
      *
