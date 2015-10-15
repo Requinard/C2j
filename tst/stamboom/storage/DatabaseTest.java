@@ -6,6 +6,7 @@
 package stamboom.storage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -46,7 +47,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testSaveToDatabase() throws IOException {
+    public void testSaveToDatabase() throws IOException, SQLException, ClassNotFoundException {
 
         Administratie adm = controller.getAdministratie();
         Persoon piet1, teuntje2;
@@ -80,7 +81,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testLoadFromDataBase() throws IOException {
+    public void testLoadFromDataBase() throws IOException, SQLException, ClassNotFoundException {
 
         controller.loadFromDatabase();
         Administratie adm = controller.getAdministratie();

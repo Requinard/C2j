@@ -1,16 +1,16 @@
 package stamboom.domain;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
-
+import stamboom.util.StringUtilities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import stamboom.util.StringUtilities;
 
 public class Persoon implements Serializable {
 
@@ -22,11 +22,11 @@ public class Persoon implements Serializable {
     private final Calendar gebDat;
     private final String gebPlaats;
     private Gezin ouderlijkGezin;
-    private final List<Gezin> alsOuderBetrokkenIn;
+    private final List<Gezin> alsOuderBetrokkenIn = new ArrayList<Gezin>();
+    private transient ObservableList<Gezin> obsPersoonGezin;
+
     private final Geslacht geslacht;
-
-    private ObservableList<Gezin> observableAlsOuderBetrokkenIn;
-
+    int afmeting = 1;
 
     // ********constructoren***********************************
     /**
@@ -40,28 +40,31 @@ public class Persoon implements Serializable {
      *
      */
     Persoon(int persNr, String[] vnamen, String anaam, String tvoegsel,
-            Calendar gebdat, String gebplaats, Geslacht g, Gezin ouderlijkGezin) {
-
-        this.nr = persNr;
-        this.voornamen = vnamen;
-        this.tussenvoegsel = tvoegsel.toLowerCase();
-        this.achternaam = anaam.substring(0,1).toUpperCase() + anaam.substring(1).toLowerCase();
-        this.gebDat = gebdat;
-        this.gebPlaats = gebplaats.substring(0, 1).toUpperCase() + gebplaats.substring(1).toLowerCase();
-        this.ouderlijkGezin = ouderlijkGezin;
-        this.geslacht = g;
-        this.alsOuderBetrokkenIn = new ArrayList<>();
-        this.observableAlsOuderBetrokkenIn = FXCollections.observableList(alsOuderBetrokkenIn);
+            Calendar gebdat, String gebplaats, Geslacht g, Gezin ouderlijkgezin) {
+        //todo opgave 1
+        nr = persNr;
+        voornamen = vnamen;
+        achternaam = anaam;
+        tussenvoegsel = tvoegsel;
+        gebDat = gebdat;
+        gebPlaats = gebplaats;
+        geslacht = g;
+        ouderlijkGezin = ouderlijkgezin;
+        obsPersoonGezin = FXCollections.observableList(alsOuderBetrokkenIn);
 
     }
-
 
     // ********methoden****************************************
     /**
      * @return de achternaam van deze persoon
      */
+    public ObservableList<Gezin> getPersoonGezin() {
+        return (ObservableList<Gezin>) FXCollections.unmodifiableObservableList(obsPersoonGezin);
+    }
+
     public String getAchternaam() {
-        return achternaam;
+        String lastname = achternaam.substring(0, 1).toUpperCase() + achternaam.substring(1).toLowerCase();
+        return lastname;
     }
 
     /**
@@ -76,7 +79,8 @@ public class Persoon implements Serializable {
      * @return de geboorteplaats van deze persoon
      */
     public String getGebPlaats() {
-        return gebPlaats;
+        String Upper = gebPlaats.substring(0, 1).toUpperCase() + gebPlaats.substring(1).toLowerCase();
+        return Upper;
     }
 
     /**
@@ -94,13 +98,12 @@ public class Persoon implements Serializable {
      */
     public String getInitialen() {
         //todo opgave 1
-        String result = "";
-
+        String initialen = "";
         for (String s : voornamen) {
-            result = result + s.substring(0, 1) + ".";
+            initialen += s.substring(0, 1) + ".";
+            //System.out.println(initialen);
         }
-
-        return result;
+        return initialen;
     }
 
     /**
@@ -108,10 +111,13 @@ public class Persoon implements Serializable {
      * @return de initialen gevolgd door een eventueel tussenvoegsel en
      * afgesloten door de achternaam; initialen, voorzetsel en achternaam zijn
      * gescheiden door een spatie
+     *
+     *
      */
     public String getNaam() {
         //todo opgave 1
-        String result = "";
+
+        String result;
 
         if (getTussenvoegsel() == "") {
             result = getInitialen() + " " + getAchternaam();
@@ -141,7 +147,8 @@ public class Persoon implements Serializable {
      * string zijn)
      */
     public String getTussenvoegsel() {
-        return tussenvoegsel;
+
+        return tussenvoegsel.toLowerCase();
     }
 
     /**
@@ -175,9 +182,8 @@ public class Persoon implements Serializable {
     /**
      * @return de gezinnen waar deze persoon bij betrokken is
      */
-    public ObservableList<Gezin> getAlsOuderBetrokkenIn() {
-        return (ObservableList<Gezin>)
-                FXCollections.unmodifiableObservableList(observableAlsOuderBetrokkenIn);
+    public List<Gezin> getAlsOuderBetrokkenIn() {
+        return (List<Gezin>) Collections.unmodifiableList(alsOuderBetrokkenIn);
     }
 
     /**
@@ -189,14 +195,14 @@ public class Persoon implements Serializable {
      * @param ouderlijkGezin
      * @return of ouderlijk gezin kon worden toegevoegd
      */
+    /////
     boolean setOuders(Gezin ouderlijkGezin) {
-
+        //todo opgave 1
         if (this.ouderlijkGezin == null) {
             this.ouderlijkGezin = ouderlijkGezin;
             ouderlijkGezin.breidUitMet(this);
             return true;
         }
-
         return false;
     }
 
@@ -216,10 +222,10 @@ public class Persoon implements Serializable {
                 sb.append("; 2e ouder: ").append(ouderlijkGezin.getOuder2().getNaam());
             }
         }
-        if (!alsOuderBetrokkenIn.isEmpty()) {
+        if (!obsPersoonGezin.isEmpty()) {
             sb.append("; is ouder in gezin ");
 
-            for (Gezin g : alsOuderBetrokkenIn) {
+            for (Gezin g : obsPersoonGezin) {
                 sb.append(g.getNr()).append(" ");
             }
         }
@@ -236,7 +242,7 @@ public class Persoon implements Serializable {
      */
     void wordtOuderIn(Gezin g) {
         if (!alsOuderBetrokkenIn.contains(g)) {
-            alsOuderBetrokkenIn.add(g);
+            obsPersoonGezin.add(g);
         }
     }
 
@@ -248,10 +254,13 @@ public class Persoon implements Serializable {
      * null
      */
     public Gezin heeftOngehuwdGezinMet(Persoon andereOuder) {
-        for (Gezin g : alsOuderBetrokkenIn) {
-            if (g.getOuder2() != null && (g.getOuder2().equals(andereOuder)
-                    || g.getOuder1().equals(andereOuder)))
-                return g;
+        //todo opgave 1
+        for (Gezin g : obsPersoonGezin) {
+            if (g.isOngehuwd()) {
+                if (g.getOuder1() == andereOuder || g.getOuder2() == andereOuder) {
+                    return g;
+                }
+            }
         }
         return null;
     }
@@ -262,7 +271,7 @@ public class Persoon implements Serializable {
      * @return true als persoon op datum getrouwd is, anders false
      */
     public boolean isGetrouwdOp(Calendar datum) {
-        for (Gezin gezin : alsOuderBetrokkenIn) {
+        for (Gezin gezin : obsPersoonGezin) {
             if (gezin.heeftGetrouwdeOudersOp(datum)) {
                 return true;
             }
@@ -274,17 +283,17 @@ public class Persoon implements Serializable {
      *
      * @param datum
      * @return true als de persoon kan trouwen op datum, hierbij wordt rekening
-     * gehouden met huwelijken in het verleden en in de toekomst
-     * Alleen meerderjarige (18+) personen kunnen trouwen.
+     * gehouden met huwelijken in het verleden en in de toekomst Alleen
+     * meerderjarige (18+) personen kunnen trouwen.
      */
     public boolean kanTrouwenOp(Calendar datum) {
-        Calendar meerderjarigDatum = ((GregorianCalendar)this.gebDat.clone());
+        Calendar meerderjarigDatum = ((GregorianCalendar) this.gebDat.clone());
         meerderjarigDatum.add(Calendar.YEAR, 18);
-        if(datum.compareTo(meerderjarigDatum) < 1){
+        if (datum.compareTo(meerderjarigDatum) < 1) {
             return false;
         }
 
-        for (Gezin gezin : alsOuderBetrokkenIn) {
+        for (Gezin gezin : obsPersoonGezin) {
             if (gezin.heeftGetrouwdeOudersOp(datum)) {
                 return false;
             } else {
@@ -303,36 +312,37 @@ public class Persoon implements Serializable {
      * @return true als persoon op datum gescheiden is, anders false
      */
     public boolean isGescheidenOp(Calendar datum) {
-        for (Gezin g : alsOuderBetrokkenIn) {
-            if (g.getScheidingsdatum() != null
-                    && g.getScheidingsdatum().equals(datum)
-                    && g.getScheidingsdatum().before(Calendar.getInstance()))
-                return true;
+        //todo opgave 1
+        Boolean isGescheiden = false;
+        for (Gezin g : obsPersoonGezin) {
+            Calendar c = g.getScheidingsdatum();
+            if (c != null && c.before(datum)) {
+                isGescheiden = true;
+            }
         }
-        return false;
+        return isGescheiden;
     }
 
     /**
      * ********* de rest wordt in opgave 2 verwerkt ****************
      */
     /**
+     *
      * @return het aantal personen in de stamboom van deze persoon (ouders,
      * grootouders etc); de persoon zelf telt ook mee
      */
     public int afmetingStamboom() {
-        int depth = 1;
-
-        if (ouderlijkGezin != null) {
-            if (ouderlijkGezin.getOuder1() != null) {
-                depth += ouderlijkGezin.getOuder1().afmetingStamboom();
+        //todo opgave2
+        int afmeting = 1;
+        if (this.ouderlijkGezin != null) {
+            if (this.ouderlijkGezin.getOuder1() != null) {
+                afmeting += this.ouderlijkGezin.getOuder1().afmetingStamboom();
             }
-            if (ouderlijkGezin.getOuder2() != null) {
-                depth += ouderlijkGezin.getOuder2().afmetingStamboom();
+            if (this.ouderlijkGezin.getOuder2() != null) {
+                afmeting += this.ouderlijkGezin.getOuder2().afmetingStamboom();
             }
         }
-
-        return depth;
-
+        return afmeting;
     }
 
     /**
@@ -344,23 +354,29 @@ public class Persoon implements Serializable {
      * (mits bekend) (het generatienummer van de ouders is steeds 1 hoger)
      *
      * @param lijst
-     * @param g     >=0, het nummer van de generatie waaraan deze persoon is
-     *              toegewezen;
+     * @param g >=0, het nummer van de generatie waaraan deze persoon is
+     * toegewezen;
      */
-    void voegJouwStamboomToe(ArrayList<PersoonMetGeneratie> lijst, int g) {
+    public void voegJouwStamboomToe(ArrayList<PersoonMetGeneratie> lijst, int g) {
         //todo opgave 2
+
         lijst.add(new PersoonMetGeneratie(this.standaardgegevens(), g));
-
-        if (getOuderlijkGezin().getOuder1() != null) {
-            getOuderlijkGezin().getOuder1().voegJouwStamboomToe(lijst, g + 1);
+        Persoon ouder1 = null;
+        Persoon ouder2 = null;
+        if (this.getOuderlijkGezin() != null) {
+            ouder1 = this.getOuderlijkGezin().getOuder1();
+            ouder2 = this.getOuderlijkGezin().getOuder2();
         }
-
-        if (getOuderlijkGezin().getOuder2() != null) {
-            getOuderlijkGezin().getOuder2().voegJouwStamboomToe(lijst, g + 1);
+        if (ouder1 != null) {
+            ouder1.voegJouwStamboomToe(lijst, g + 1);
+        }
+        if (ouder2 != null) {
+            ouder2.voegJouwStamboomToe(lijst, g + 1);
         }
     }
 
     /**
+     *
      * @return de stamboomgegevens van deze persoon in de vorm van een String:
      * op de eerste regel de standaardgegevens van deze persoon, gevolgd door de
      * stamboomgegevens van de eerste ouder (mits bekend) en gevolgd door de
@@ -368,10 +384,10 @@ public class Persoon implements Serializable {
      * persoon staat op een aparte regel en afhankelijk van het
      * generatieverschil worden er per persoon 2*generatieverschil spaties
      * ingesprongen;
-     * <p>
+     *
      * bijv voor M.G. Pieterse met ouders, grootouders en overgrootouders,
      * inspringen is in dit geval met underscore gemarkeerd: <br>
-     * <p>
+     *
      * M.G. Pieterse (VROUW) 5-5-2004<br>
      * __L. van Maestricht (MAN) 27-6-1953<br>
      * ____A.G. von Bisterfeld (VROUW) 13-4-1911<br>
@@ -384,28 +400,26 @@ public class Persoon implements Serializable {
      */
     public String stamboomAlsString() {
         StringBuilder builder = new StringBuilder();
-
-        builder.append(this.toString() + "\n");
-
-        if (ouderlijkGezin != null) {
-            if (ouderlijkGezin.getOuder1() != null) {
-                String stamboom = ouderlijkGezin.getOuder1().stamboomAlsString();
-
-                for(String s: stamboom.split("\n"))
-                {
-                    builder.append("  " + s + "\n");
-                }
+        String test = "";
+        ArrayList<PersoonMetGeneratie> pmg = new ArrayList<>();
+        voegJouwStamboomToe(pmg, 0);
+        for (PersoonMetGeneratie p : pmg) {
+            for (int i = 0; i < p.getGeneratie(); i++) {
+                builder.append("  ");
             }
-            if(ouderlijkGezin.getOuder2() != null) {
-                String stamboom = ouderlijkGezin.getOuder2().stamboomAlsString();
-
-                for(String s: stamboom.split("\n"))
-                {
-                    builder.append("  " + s + "\n");
-                }
-            }
+            //System.out.println(p.getGeneratie());
+            //System.out.println(builder.toString() + p.getPersoonsgegevens().trim());
+            builder.append(p.getPersoonsgegevens().trim());
+            builder.append(System.getProperty("line.separator"));
         }
-
+        //System.out.println(builder.toString());
         return builder.toString();
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        obsPersoonGezin = FXCollections.observableList(alsOuderBetrokkenIn);
+        //obsPersoonGezin = (ObservableList<Gezin>) ois.readObject();
+
     }
 }

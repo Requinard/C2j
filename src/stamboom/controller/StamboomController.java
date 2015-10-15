@@ -5,10 +5,14 @@
 package stamboom.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import stamboom.domain.Administratie;
+import stamboom.storage.DatabaseMediator;
 import stamboom.storage.IStorageMediator;
 import stamboom.storage.SerializationMediator;
 
@@ -74,25 +78,18 @@ public class StamboomController {
 
         this.admin = serializationMediator.load();
     }
-    
-    // opgave 4
-    private void initDatabaseMedium() throws IOException {
-//        if (!(storageMediator instanceof DatabaseMediator)) {
-//            Properties props = new Properties();
-//            try (FileInputStream in = new FileInputStream("database.properties")) {
-//                props.load(in);
-//            }
-//            storageMediator = new DatabaseMediator(props);
-//        }
-    }
-    
+
+
     /**
      * administratie wordt vanuit standaarddatabase opgehaald
      *
      * @throws IOException
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
-    public void loadFromDatabase() throws IOException {
+    public void loadFromDatabase() throws IOException, SQLException, ClassNotFoundException {
         //todo opgave 4
+
     }
 
     /**
@@ -100,8 +97,9 @@ public class StamboomController {
      *
      * @throws IOException
      */
-    public void saveToDatabase() throws IOException {
+    public void saveToDatabase() throws IOException, SQLException, ClassNotFoundException {
         //todo opgave 4
+
     }
 
 }

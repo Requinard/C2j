@@ -24,6 +24,8 @@ import stamboom.domain.Gezin;
 import stamboom.domain.Persoon;
 import stamboom.util.StringUtilities;
 
+import javax.swing.*;
+
 /**
  *
  * @author frankpeeters
@@ -164,7 +166,7 @@ public class StamboomFXController extends StamboomController implements Initiali
             }
 
             //todo opgave 3
-            lvAlsOuderBetrokkenBij.setItems(persoon.getAlsOuderBetrokkenIn());
+            lvAlsOuderBetrokkenBij.setItems(persoon.getPersoonGezin());
         }
     }
 
@@ -224,6 +226,7 @@ public class StamboomFXController extends StamboomController implements Initiali
     public void setHuwdatum(Event evt) {
         // Wat moet dit doen?
         // todo opgave 3
+
 
     }
 
@@ -318,22 +321,18 @@ public class StamboomFXController extends StamboomController implements Initiali
     }
 
     
-    public void openStamboom(Event evt) {
+    public void openStamboom(Event evt) throws IOException {
         // todo opgave 3
         if (!withDatabase) {
 
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Haal Stamboom op");
-            File f = fileChooser.showOpenDialog(new Stage());
-
-            try {
-                this.deserialize(f);
-                this.personen = getAdministratie().getPersonen();
-                this.initComboboxes();
-
-            } catch (IOException exc) {
-                showDialog("Gelukt", exc.getLocalizedMessage());
-            }
+            JFileChooser jf = new JFileChooser();
+            jf.showOpenDialog(jf);
+            File bestand = new File(jf.getSelectedFile().toString());
+            this.deserialize(bestand);
+            System.out.println(this.getAdministratie().getPersonen().size());
+            initComboboxes();
+            //this.loadFromDatabase();
+            initComboboxes();
         }
 
 

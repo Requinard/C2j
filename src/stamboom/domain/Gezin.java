@@ -1,5 +1,7 @@
 package stamboom.domain;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.*;
 import javafx.beans.property.LongProperty;
@@ -15,18 +17,19 @@ public class Gezin implements Serializable {
     private final Persoon ouder1;
     private final Persoon ouder2;
     private final List<Persoon> kinderen;
+    private transient ObservableList<Persoon> obsKinderen;
+    private String childnames = "";
 
-    private ObservableList<Persoon> observableKinderen;
     /**
      * kan onbekend zijn (dan is het een ongehuwd gezin):
      */
-    private Calendar huwelijksdatum;
+    private Calendar huwelijksdatum ;
     /**
      * kan null zijn; als huwelijksdatum null is, dan zal scheidingsdatum ook null
      * zijn; Als huwelijksdatum en scheidingsdatum bekend zijn, dan zal de
      * scheidingsdatum na het huewelijk zijn.
      */
-    private Calendar scheidingsdatum;
+    private Calendar scheidingsdatum ;
 
     // *********constructoren***********************************
     /**
@@ -63,25 +66,31 @@ public class Gezin implements Serializable {
         {
             throw new RuntimeException("ouder2 moet nog geboren worden");
         }
-        
+
         this.nr = gezinsNr;
         this.ouder1 = ouder1;
         this.ouder2 = ouder2;
-        this.kinderen = new ArrayList<>();
         this.huwelijksdatum = null;
         this.scheidingsdatum = null;
-        this.observableKinderen = FXCollections.observableList(kinderen);
+        kinderen = new ArrayList<>();
+        obsKinderen = FXCollections.observableList(kinderen);
+
     }
 
     // ********methoden*****************************************
+
+    public ObservableList<Persoon> getKinderen() {
+        return (ObservableList<Persoon>) FXCollections.unmodifiableObservableList(obsKinderen);
+    }
+
     /**
      * @return alle kinderen uit dit gezin
      */
-    public ObservableList<Persoon> getKinderen() {
-        return (ObservableList<Persoon>)
-                FXCollections.unmodifiableObservableList(observableKinderen);
-    }
 
+
+//    public List<Persoon> getKinderen() {
+//        return (List<Persoon>) Collections.unmodifiableList(kinderen);
+//    }
 
     /**
      *
@@ -131,7 +140,7 @@ public class Gezin implements Serializable {
         if (heeftGetrouwdeOudersOp(Calendar.getInstance())) {
             s.append(" ").append(StringUtilities.datumString(huwelijksdatum));
         }
-        return s.toString();
+        return s.toString().trim();
     }
 
     /**
@@ -157,7 +166,7 @@ public class Gezin implements Serializable {
      */
     boolean setScheiding(Calendar datum) {
         if (this.scheidingsdatum == null && huwelijksdatum != null
-                && datum.after(huwelijksdatum) && datum != null) {
+                && datum != null && datum.after(huwelijksdatum)) {
             this.scheidingsdatum = datum;
             return true;
         } else {
@@ -176,14 +185,22 @@ public class Gezin implements Serializable {
      */
     boolean setHuwelijk(Calendar datum) {
         //todo opgave 1
-        Calendar nu = Calendar.getInstance();
-        // Kijkt of de ouders oud genoeg zijn om te trouwen
-
-        if (huwelijksdatum == null && datum != null){
+        Calendar today = Calendar.getInstance();
+        int ageOuder1 = today.get(Calendar.YEAR) - ouder1.getGebDat().get(Calendar.YEAR);
+        int ageOuder2 = today.get(Calendar.YEAR) - ouder2.getGebDat().get(Calendar.YEAR);
+        if(ageOuder1 < 18 || ageOuder2 < 18)
+        {
+            return false;
+        }
+        if(datum.before(huwelijksdatum)|| huwelijksdatum == null)
+        {
             huwelijksdatum = datum;
             return true;
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -194,23 +211,34 @@ public class Gezin implements Serializable {
      */
     public String beschrijving() {
         //todo opgave 1
-        // Voegt het gezinsnummer toe samen met de de ouders in het gezin.
-        String beschrijving = nr + " " + ouder1.getNaam() + " met " + ouder2.getNaam();
+        String result = this.nr + " " + this.ouder1.getNaam() + " met " + this.ouder2.getNaam();
 
         if (this.huwelijksdatum != null) {
-            // Toevoegen van de huwlijksdatum aan de beschrijving
-            beschrijving = beschrijving + " " + StringUtilities.datumString(huwelijksdatum);
+            result = result + " " + StringUtilities.datumString(huwelijksdatum);
         }
 
-        // Toevoegen van de kinderen
-        if (kinderen != null && kinderen.size() >= 1) {
-            beschrijving = beschrijving + "; kinderen: ";
-            for (Persoon persoon : kinderen) {
-                beschrijving = beschrijving + "-" + persoon.getVoornamen() + " ";
+        if (this.kinderen != null && this.kinderen.size() >= 1) {
+            result = result + "; kinderen: ";
+            for (Persoon persoon : this.kinderen) {
+                result = result + "-" + persoon.getVoornamen() + " ";
             }
         }
 
-        return beschrijving.trim();
+        return result.trim();
+
+    }
+
+    public String beschrijvingKinderen() {
+        //todo opgave 1
+        String result = "";
+
+        if (this.kinderen != null && this.kinderen.size() >= 1) {
+
+            for (Persoon persoon : this.kinderen) {
+                result = result + persoon.getVoornamen() + " ";
+            }
+        }
+        return result.trim();
     }
 
     /**
@@ -220,6 +248,7 @@ public class Gezin implements Serializable {
      * @param kind
      */
     void breidUitMet(Persoon kind) {
+
         if (!kinderen.contains(kind) && !this.isFamilieVan(kind)) {
             kinderen.add(kind);
         }
@@ -254,8 +283,7 @@ public class Gezin implements Serializable {
      * anders false
      */
     public boolean heeftGetrouwdeOudersOp(Calendar datum) {
-        return isHuwelijkOp(datum)
-                && (scheidingsdatum == null || scheidingsdatum.after(datum));
+        return isHuwelijkOp(datum) && (scheidingsdatum == null || scheidingsdatum.after(datum));
     }
 
     /**
@@ -266,7 +294,10 @@ public class Gezin implements Serializable {
      */
     public boolean isHuwelijkOp(Calendar datum) {
         //todo opgave 1
-        if (huwelijksdatum != null && huwelijksdatum.before(datum)){
+        if(huwelijksdatum == null){
+            return false;
+        }
+        else if(huwelijksdatum.before(datum)){
             return true;
         }
         return false;
@@ -277,7 +308,10 @@ public class Gezin implements Serializable {
      * @return true als de ouders van dit gezin niet getrouwd zijn, anders false
      */
     public boolean isOngehuwd() {
-        return huwelijksdatum == null;
+        if(huwelijksdatum == null){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -286,12 +320,21 @@ public class Gezin implements Serializable {
      * @return true als dit een gescheiden huwelijk is op datum, anders false
      */
     public boolean heeftGescheidenOudersOp(Calendar datum) {
-        Calendar nu = Calendar.getInstance();
-        if (getOuder1().isGescheidenOp(datum)
-                || getOuder2().isGescheidenOp(datum))
-            return true;
+        //todo opgave 1
+        boolean isGescheiden = false;
+        if(ouder1.isGescheidenOp(datum))
+        {
+            isGescheiden = true;
+        }
+        if(ouder2.isGescheidenOp(datum))
+        {
+            isGescheiden = true;
+        }
+        return isGescheiden;
+    }
 
-        return  false;
-
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        obsKinderen = FXCollections.observableList(kinderen);
     }
 }
