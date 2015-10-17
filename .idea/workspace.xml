@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="911af96c-afaa-40db-bfe5-8e0e28992580" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/stamboom/storage/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/C2j/stamboom/storage/DatabaseMediator.class" afterPath="$PROJECT_DIR$/out/production/C2j/stamboom/storage/DatabaseMediator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/C2j/stamboom/controller/StamboomController.class" afterPath="$PROJECT_DIR$/out/production/C2j/stamboom/controller/StamboomController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/C2j/stamboom/gui/StamboomFXController.class" afterPath="$PROJECT_DIR$/out/production/C2j/stamboom/gui/StamboomFXController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/C2j/stamboom/storage/IStorageMediator.class" afterPath="$PROJECT_DIR$/out/production/C2j/stamboom/storage/IStorageMediator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java" afterPath="$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stamboom/storage/IStorageMediator.java" afterPath="$PROJECT_DIR$/src/stamboom/storage/IStorageMediator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stamboom/controller/StamboomController.java" afterPath="$PROJECT_DIR$/src/stamboom/controller/StamboomController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stamboom/gui/StamboomFXController.java" afterPath="$PROJECT_DIR$/src/stamboom/gui/StamboomFXController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/C2j/stamboom/gui/StamboomGUI.fxml" afterPath="$PROJECT_DIR$/out/production/C2j/stamboom/gui/StamboomGUI.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stamboom/gui/StamboomGUI.fxml" afterPath="$PROJECT_DIR$/src/stamboom/gui/StamboomGUI.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.properties" afterPath="$PROJECT_DIR$/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="C2j.iws" />
@@ -54,6 +46,24 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - c2j@mysql.terarion.com" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="c2j" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="GEZINNEN" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -65,29 +75,51 @@
         <entry file="file://$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding>
-                <element signature="e#0#4282#0" expanded="true" />
+                <element signature="e#0#8553#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#3038#3039#0" expanded="true" />
-                <element signature="e#3066#3067#0" expanded="true" />
-                <marker date="1445082055858" expanded="true" signature="1035:1056" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1091" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1092" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1135" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1136" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1225" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1272" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1320" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1362" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1403" placeholder="INSERT INTO ..." />
-                <marker date="1445082055858" expanded="true" signature="1035:1467" placeholder="INSERT INTO ..." />
+                <element signature="e#7346#7347#0" expanded="true" />
+                <element signature="e#7374#7375#0" expanded="true" />
+                <marker date="1445084348437" expanded="true" signature="769:791" placeholder="select * fro..PERSONEN..." />
+                <marker date="1445084348437" expanded="true" signature="1769:1791" placeholder="select * fro..GEZINNEN..." />
+                <marker date="1445084348437" expanded="true" signature="3075:3097" placeholder="select * fro..PERSONEN..." />
+                <marker date="1445084348437" expanded="true" signature="3913:3934" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:3969" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:3970" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4013" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4014" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4103" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4150" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4198" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4240" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4281" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="3913:4345" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="5253:5270" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="5253:5273" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="5253:5487" placeholder="INSERT INTO ..." />
+                <marker date="1445084348437" expanded="true" signature="5253:5541" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="c2j.PERSONEN" pinned="false" current-in-tab="true">
+      <file leaf-file-name="c2j.GEZINNEN" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/b3b8b4e2/18d5dbbe-2eac-4e69-a032-13c06aab24b3/c2j..GEZINNEN">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="c2j.PERSONEN" pinned="false" current-in-tab="false">
         <entry file="dbDummy://dbtable:/b3b8b4e2/18d5dbbe-2eac-4e69-a032-13c06aab24b3/c2j..PERSONEN">
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -106,17 +138,40 @@
         <entry file="file://$PROJECT_DIR$/tst/stamboom/storage/DatabaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="94" column="66" selection-start-line="94" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StamboomController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stamboom/controller/StamboomController.java">
+      <file leaf-file-name="Administratie.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/stamboom/domain/Administratie.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+              <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6820#6821#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StamboomController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/stamboom/controller/StamboomController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.55825245">
+              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Persoon.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/stamboom/domain/Persoon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -356,6 +411,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -956,12 +1012,19 @@
       <workItem from="1444897523764" duration="579000" />
       <workItem from="1444902685683" duration="334000" />
       <workItem from="1444910483626" duration="2029000" />
-      <workItem from="1445078950714" duration="3115000" />
+      <workItem from="1445078950714" duration="5395000" />
     </task>
+    <task id="LOCAL-00001" summary="Now saving users to database">
+      <created>1445082105289</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1445082105289</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6156000" />
+    <option name="totallyTimeSpent" value="8436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -974,7 +1037,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-18" width="1924" height="1081" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -983,8 +1046,8 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19009584" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39896908" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11235357" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33505154" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1013,6 +1076,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Now saving users to database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now saving users to database" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -1027,8 +1094,26 @@
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1053,21 +1138,28 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
-            <element signature="e#0#4282#0" expanded="true" />
+            <element signature="e#0#8553#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3038#3039#0" expanded="true" />
-            <element signature="e#3066#3067#0" expanded="true" />
-            <marker date="1445082055858" expanded="true" signature="1035:1056" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1091" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1092" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1135" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1136" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1225" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1272" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1320" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1362" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1403" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1467" placeholder="INSERT INTO ..." />
+            <element signature="e#7346#7347#0" expanded="true" />
+            <element signature="e#7374#7375#0" expanded="true" />
+            <marker date="1445084348437" expanded="true" signature="769:791" placeholder="select * fro..PERSONEN..." />
+            <marker date="1445084348437" expanded="true" signature="1769:1791" placeholder="select * fro..GEZINNEN..." />
+            <marker date="1445084348437" expanded="true" signature="3075:3097" placeholder="select * fro..PERSONEN..." />
+            <marker date="1445084348437" expanded="true" signature="3913:3934" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:3969" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:3970" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4013" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4014" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4103" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4150" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4198" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4240" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4281" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4345" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5270" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5273" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5487" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5541" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1247,14 +1339,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stamboom/domain/Administratie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="116.0">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stamboom/gui/StamboomGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4814816">
@@ -1268,8 +1352,8 @@
         <state vertical-scroll-proportion="0.3478261">
           <caret line="134" column="25" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
           <folding>
-            <element signature="e#4150#4151#0" expanded="true" />
-            <element signature="e#4214#4215#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="false" />
+            <element signature="e#4214#4215#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1292,14 +1376,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stamboom/domain/Persoon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.1798563">
-          <caret line="184" column="23" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1349,40 +1425,40 @@
     <entry file="file://$PROJECT_DIR$/tst/stamboom/storage/DatabaseTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="66" selection-start-line="94" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stamboom/controller/StamboomController.java">
+    <entry file="file://$PROJECT_DIR$/src/stamboom/domain/Persoon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java">
+    <entry file="file://$PROJECT_DIR$/src/stamboom/domain/Administratie.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4282#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3038#3039#0" expanded="true" />
-            <element signature="e#3066#3067#0" expanded="true" />
-            <marker date="1445082055858" expanded="true" signature="1035:1056" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1091" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1092" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1135" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1136" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1225" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1272" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1320" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1362" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1403" placeholder="INSERT INTO ..." />
-            <marker date="1445082055858" expanded="true" signature="1035:1467" placeholder="INSERT INTO ..." />
+            <element signature="e#6820#6821#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/b3b8b4e2/18d5dbbe-2eac-4e69-a032-13c06aab24b3/c2j..GEZINNEN">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1396,6 +1472,45 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stamboom/storage/DatabaseMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#8553#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#7346#7347#0" expanded="true" />
+            <element signature="e#7374#7375#0" expanded="true" />
+            <marker date="1445084348437" expanded="true" signature="769:791" placeholder="select * fro..PERSONEN..." />
+            <marker date="1445084348437" expanded="true" signature="1769:1791" placeholder="select * fro..GEZINNEN..." />
+            <marker date="1445084348437" expanded="true" signature="3075:3097" placeholder="select * fro..PERSONEN..." />
+            <marker date="1445084348437" expanded="true" signature="3913:3934" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:3969" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:3970" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4013" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4014" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4103" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4150" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4198" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4240" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4281" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="3913:4345" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5270" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5273" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5487" placeholder="INSERT INTO ..." />
+            <marker date="1445084348437" expanded="true" signature="5253:5541" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stamboom/controller/StamboomController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55825245">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

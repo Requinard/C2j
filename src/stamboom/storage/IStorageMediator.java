@@ -17,7 +17,7 @@ public interface IStorageMediator {
      * configured location
      * @throws IOException
      */
-    Administratie load() throws IOException;
+    Administratie load() throws IOException, SQLException;
     
     /**
      * pre: medium isCorrectlyConfigured()

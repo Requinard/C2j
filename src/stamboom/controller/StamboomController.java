@@ -88,8 +88,16 @@ public class StamboomController {
      * @throws java.lang.ClassNotFoundException
      */
     public void loadFromDatabase() throws IOException, SQLException, ClassNotFoundException {
-        //todo opgave 4
+        DatabaseMediator databaseMediator = new DatabaseMediator();
+        Properties p = new Properties();
 
+        FileInputStream fin = new FileInputStream("database.properties");
+
+        p.load(fin);
+
+        databaseMediator.configure(p);
+
+        this.admin = databaseMediator.load();
     }
 
     /**
