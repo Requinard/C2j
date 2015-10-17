@@ -120,7 +120,7 @@ public class StamboomFXController extends StamboomController implements Initiali
         this.getAdministratie().addPersoon(Geslacht.MAN, voornaam, "Hartman", "", gebDat, "Gorinchem", null);
         this.getAdministratie().addPersoon(Geslacht.VROUW, voornaam2, "Jenskens", "", gebDat, "Helond", null);
         this.getAdministratie().addOngehuwdGezin(this.getAdministratie().getPersoon(1), this.getAdministratie().getPersoon(2));
-        this.getAdministratie().addPersoon(Geslacht.MAN, voornaam3, "Hartman", "", gebDat2, "Ëindhoven", getAdministratie().getGezin(1));
+        this.getAdministratie().addPersoon(Geslacht.MAN, voornaam3, "Hartman", "", gebDat2, "ï¿½indhoven", getAdministratie().getGezin(1));
     }
 
     private void initComboboxes() {
@@ -353,6 +353,10 @@ public class StamboomFXController extends StamboomController implements Initiali
             } catch (Exception exc) {
                 exc.fillInStackTrace();
             }
+        }
+        else
+        {
+            // TODO: fill in opgave 4
         }
     }
 

@@ -5,6 +5,7 @@
 package stamboom.storage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Properties;
 import stamboom.domain.Administratie;
 
@@ -24,7 +25,7 @@ public interface IStorageMediator {
      * @param admin
      * @throws IOException 
      */
-    void save(Administratie admin) throws IOException;
+    void save(Administratie admin) throws IOException, SQLException;
     
     /**
      * the mediator is initialized with properties in props, so afterwards config()=props; 

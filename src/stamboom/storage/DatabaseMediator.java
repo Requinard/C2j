@@ -4,11 +4,12 @@
  */
 package stamboom.storage;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Properties;
 import stamboom.domain.Administratie;
+import stamboom.domain.Persoon;
+
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
 
 public class DatabaseMediator implements IStorageMediator {
 
@@ -17,13 +18,49 @@ public class DatabaseMediator implements IStorageMediator {
 
     @Override
     public Administratie load() throws IOException {
-        //todo opgave 4
         return null;
     }
 
     @Override
-    public void save(Administratie admin) throws IOException {
-        //todo opgave 4
+    public void save(Administratie admin) throws IOException, SQLException {
+        Statement statement;
+
+        conn = DriverManager.getConnection(this.props.getProperty("url"), this.props.getProperty("username"), this.props.getProperty("password"));
+
+        statement = conn.createStatement();
+
+        // Clear database
+        statement.execute("TRUNCATE PERSONEN;");
+
+        for(Persoon persoon: admin.getPersonen())
+        {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "INSERT INTO PERSONEN(" +
+                            "id," +
+                            "achternaam," +
+                            "voornamen," +
+                            "tussenvoegsel," +
+                            "geboortedatum," +
+                            "geboorteplaats," +
+                            "geslacht," +
+                            "ouders)" +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+            preparedStatement.setInt(1, persoon.getNr());
+            preparedStatement.setString(2, persoon.getAchternaam());
+            preparedStatement.setString(3, persoon.getVoornamen());
+            preparedStatement.setString(4, persoon.getTussenvoegsel());
+            preparedStatement.setDate(5, new Date(persoon.getGebDat().getTimeInMillis()));
+            preparedStatement.setString(6, persoon.getGebPlaats());
+            preparedStatement.setString(7, persoon.getGeslacht().toString());
+
+            if(persoon.getOuderlijkGezin() != null)
+                preparedStatement.setInt(8, persoon.getOuderlijkGezin().getNr());
+            else
+                preparedStatement.setString(8, null);
+
+            preparedStatement.execute();
+        }
     }
 
     /**
@@ -49,7 +86,7 @@ public class DatabaseMediator implements IStorageMediator {
             this.props = null;
             return false;
         } finally {
-            closeConnection();
+            //closeConnection();
         }
     }
 
@@ -79,7 +116,17 @@ public class DatabaseMediator implements IStorageMediator {
     }
 
     private void initConnection() throws SQLException {
-        //opgave 4
+        String url = props.getProperty("url");
+        String username = props.getProperty("username");
+        String password = props.getProperty("password");
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            System.out.println("Database connected!");
+            this.conn = connection;
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot connect the database!", e);
+        }
+
     }
 
     private void closeConnection() {

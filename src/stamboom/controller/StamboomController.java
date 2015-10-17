@@ -98,8 +98,19 @@ public class StamboomController {
      * @throws IOException
      */
     public void saveToDatabase() throws IOException, SQLException, ClassNotFoundException {
-        //todo opgave 4
+        if(this.storageMediator == null)
+        {
+            DatabaseMediator databaseMediator = new DatabaseMediator();
+            Properties p = new Properties();
 
+            FileInputStream fin = new FileInputStream("database.properties");
+
+            p.load(fin);
+
+            databaseMediator.configure(p);
+
+            databaseMediator.save(admin);
+        }
     }
 
 }
